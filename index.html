@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frutiteca Abierta - Calculadora de Autonomía</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f7f1; color: #333; padding: 20px; }
+        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
+        h1 { color: #2e7d32; font-size: 1.5rem; text-align: center; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        select, input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
+        button { width: 100%; padding: 12px; margin-top: 20px; background-color: #ef6c00; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        button:hover { background-color: #e65100; }
+        #resultado { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; background-color: #e8f5e9; border-left: 5px solid #2e7d32; }
+        .footer { text-align: center; font-size: 0.8rem; margin-top: 20px; color: #666; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h1>🍎 Calculadora de Autonomía</h1>
+    <p style="font-size: 0.9rem; text-align: center;">Transforma tus excedentes en seguridad alimentaria.</p>
+
+    <label for="fruta">¿Qué fruta vas a deshidratar?</label>
+    <select id="fruta">
+        <option value="0.15">Mango (Rendimiento 15%)</option>
+        <option value="0.20">Manzana (Rendimiento 20%)</option>
+        <option value="0.12">Piña (Rendimiento 12%)</option>
+        <option value="0.25">Banano (Rendimiento 25%)</option>
+    </select>
+
+    <label for="kilos">Kilos de fruta fresca:</label>
+    <input type="number" id="kilos" placeholder="Ej: 5" min="0">
+
+    <button onclick="calcular()">Calcular Reserva</button>
+
+    <div id="resultado">
+        <p id="res-texto"></p>
+        <strong>¡Has fortalecido tu soberanía alimentaria!</strong>
+    </div>
+</div>
+
+<div class="footer">
+    Frutiteca Abierta - Licencia Creative Commons BY-SA 4.0
+</div>
+
+<script>
+    function calcular() {
+        const rendimiento = document.getElementById('fruta').value;
+        const kilos = document.getElementById('kilos').value;
+        const resultadoDiv = document.getElementById('resultado');
+        const resultadoTexto = document.getElementById('res-texto');
+
+        if (kilos > 0) {
+            const seco = (kilos * rendimiento).toFixed(2);
+            const raciones = Math.floor((seco * 1000) / 30); // Ración promedio de 30g
+
+            resultadoTexto.innerHTML = `
+                Con <b>${kilos}kg</b> de fruta fresca obtendrás aproximadamente <b>${seco}kg</b> de fruta deshidratada.<br><br>
+                Esto equivale a <b>${raciones} raciones</b> diarias de vitaminas para tu familia.
+            `;
+            resultadoDiv.style.display = 'block';
+        } else {
+            alert("Por favor, ingresa una cantidad de kilos válida.");
+        }
+    }
+</script>
+
+</body>
+</html>
