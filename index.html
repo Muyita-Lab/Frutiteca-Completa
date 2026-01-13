@@ -3,66 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frutiteca Abierta - Calculadora de Autonomía</title>
+    <title>Frutiteca Abierta - Soberanía Alimentaria</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f7f1; color: #333; padding: 20px; }
-        .card { background: white; border-radius: 15px; padding: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 400px; margin: auto; }
-        h1 { color: #2e7d32; font-size: 1.5rem; text-align: center; }
-        label { display: block; margin-top: 15px; font-weight: bold; }
-        select, input { width: 100%; padding: 10px; margin-top: 5px; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; margin-top: 20px; background-color: #ef6c00; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #e65100; }
-        #resultado { margin-top: 20px; padding: 15px; border-radius: 8px; display: none; background-color: #e8f5e9; border-left: 5px solid #2e7d32; }
-        .footer { text-align: center; font-size: 0.8rem; margin-top: 20px; color: #666; }
+        :root {
+            --primario: #e67e22; /* Color naranja fruta */
+            --secundario: #27ae60; /* Verde hoja */
+            --oscuro: #2c3e50;
+            --claro: #fdfaf5;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--claro); color: var(--oscuro); margin: 0; line-height: 1.6; }
+        header { background: var(--oscuro); color: white; padding: 2rem; text-align: center; border-bottom: 5px solid var(--primario); }
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+        
+        /* Secciones */
+        section { background: white; padding: 25px; border-radius: 15px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: var(--primario); border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+        /* Calculadora */
+        .calc-box { display: grid; gap: 15px; background: #fff8f0; padding: 20px; border-radius: 10px; border: 1px solid #ffe0b2; }
+        input, select, button { padding: 12px; border-radius: 8px; border: 1px solid #ddd; font-size: 1rem; }
+        button { background: var(--primario); color: white; border: none; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        button:hover { background: #d35400; }
+        #resultado { margin-top: 15px; padding: 15px; background: var(--secundario); color: white; border-radius: 8px; display: none; }
+
+        /* Multimedia Grid */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #f9f9f9; border: 1px solid #eee; padding: 15px; border-radius: 10px; text-align: center; }
+        .card img { max-width: 100%; border-radius: 8px; }
+        .btn-descarga { display: inline-block; margin-top: 10px; padding: 8px 15px; background: var(--secundario); color: white; text-decoration: none; border-radius: 5px; font-size: 0.9rem; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.9rem; color: #7f8c8d; }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>🍎 Calculadora de Autonomía</h1>
-    <p style="font-size: 0.9rem; text-align: center;">Transforma tus excedentes en seguridad alimentaria.</p>
+<header>
+    <h1>🍎 FRUTITECA ABIERTA</h1>
+    <p>Conocimiento Libre para la Soberanía Alimentaria</p>
+</header>
 
-    <label for="fruta">¿Qué fruta vas a deshidratar?</label>
-    <select id="fruta">
-        <option value="0.15">Mango (Rendimiento 15%)</option>
-        <option value="0.20">Manzana (Rendimiento 20%)</option>
-        <option value="0.12">Piña (Rendimiento 12%)</option>
-        <option value="0.25">Banano (Rendimiento 25%)</option>
-    </select>
+<div class="container">
+    
+    <section>
+        <h2>¿Por qué deshidratar?</h2>
+        <p>La deshidratación solar nos permite rescatar los excedentes de las cosechas locales, eliminando la dependencia de conservantes industriales y asegurando nutrientes para nuestras familias durante todo el año. <strong>¡Comida libre, pueblos soberanos!</strong></p>
+    </section>
 
-    <label for="kilos">Kilos de fruta fresca:</label>
-    <input type="number" id="kilos" placeholder="Ej: 5" min="0">
+    <section>
+        <h2>🧮 Calculadora de Autonomía</h2>
+        <div class="calc-box">
+            <label>Elige la fruta:</label>
+            <select id="fruta">
+                <option value="0.15">Mango (Rinde 15%)</option>
+                <option value="0.20">Manzana (Rinde 20%)</option>
+                <option value="0.12">Piña (Rinde 12%)</option>
+                <option value="0.25">Banano (Rinde 25%)</option>
+            </select>
+            <label>Kilos frescos:</label>
+            <input type="number" id="kilos" placeholder="Ej: 10">
+            <button onclick="calcular()">Calcular Reserva</button>
+            <div id="resultado"></div>
+        </div>
+    </section>
 
-    <button onclick="calcular()">Calcular Reserva</button>
+    <section>
+        <h2>🎥 Video-Laboratorio</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>El Deshidratador Solar</h3>
+                <p>Aprende a construir un secador artesanal con materiales reciclados.</p>
+                <div style="background:#ddd; height:150px; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                   [Vídeo en proceso]
+                </div>
+            </div>
+            <div class="card">
+                <h3>Técnicas de Corte</h3>
+                <p>Cómo preparar la fruta para un secado uniforme y seguro.</p>
+                <div style="background:#ddd; height:150px; border-radius:8px; display:flex; align-items:center; justify-content:center;">
+                   [Vídeo en proceso]
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div id="resultado">
-        <p id="res-texto"></p>
-        <strong>¡Has fortalecido tu soberanía alimentaria!</strong>
-    </div>
+    <section>
+        <h2>📚 Biblioteca de Acceso Libre</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Manual de Secado Solar</h3>
+                <p>Guía completa en PDF para la comunidad.</p>
+                <a href="#" class="btn-descarga">Leer Ebook (Próximamente)</a>
+            </div>
+            <div class="card">
+                <h3>Recetario Soberano</h3>
+                <p>Usos creativos de la fruta seca en la cocina local.</p>
+                <a href="#" class="btn-descarga">Leer Ebook (Próximamente)</a>
+            </div>
+        </div>
+    </section>
+
 </div>
 
-<div class="footer">
-    Frutiteca Abierta - Licencia Creative Commons BY-SA 4.0
-</div>
+<footer>
+    <p>© 2026 Frutiteca Abierta. Este proyecto es de <strong>Acceso Libre</strong>.<br>
+    Distribuido bajo licencia Creative Commons BY-SA 4.0</p>
+</footer>
 
 <script>
     function calcular() {
-        const rendimiento = document.getElementById('fruta').value;
-        const kilos = document.getElementById('kilos').value;
-        const resultadoDiv = document.getElementById('resultado');
-        const resultadoTexto = document.getElementById('res-texto');
+        const rend = document.getElementById('fruta').value;
+        const kg = document.getElementById('kilos').value;
+        const res = document.getElementById('resultado');
 
-        if (kilos > 0) {
-            const seco = (kilos * rendimiento).toFixed(2);
-            const raciones = Math.floor((seco * 1000) / 30); // Ración promedio de 30g
-
-            resultadoTexto.innerHTML = `
-                Con <b>${kilos}kg</b> de fruta fresca obtendrás aproximadamente <b>${seco}kg</b> de fruta deshidratada.<br><br>
-                Esto equivale a <b>${raciones} raciones</b> diarias de vitaminas para tu familia.
-            `;
-            resultadoDiv.style.display = 'block';
+        if (kg > 0) {
+            const final = (kg * rend).toFixed(2);
+            const raciones = Math.floor((final * 1000) / 30);
+            res.style.display = 'block';
+            res.innerHTML = `<strong>Resultado:</strong> Obtendrás <b>${final} kg</b> de alimento seco. <br> ¡Eso son <b>${raciones} raciones</b> de salud para tu comunidad!`;
         } else {
-            alert("Por favor, ingresa una cantidad de kilos válida.");
+            alert("Por favor ingresa los kilos.");
         }
     }
 </script>
